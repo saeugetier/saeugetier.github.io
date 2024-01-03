@@ -1,6 +1,6 @@
 ---
 title: "Teardown - Cheap Children Camera"
-date: 20123-10-16
+date: 2023-10-16
 ---
 
 
