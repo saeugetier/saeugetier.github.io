@@ -27,10 +27,12 @@ Main features of the Photobooth software include:
 A few months ago, I recorded a demo of the application:
 
 [![](https://markdown-videos-api.jorgenkh.no/youtube/fB2aQGPT-wg?width=640&height=360)](https://youtu.be/fB2aQGPT-wg)
+(Link to Youtube)
 
 Another video showcases an older version on actual hardware:
 
 [![](https://markdown-videos-api.jorgenkh.no/youtube/FDwVrfnzoUo?width=640&height=360)](https://youtu.be/FDwVrfnzoUo)
+(Link to Youtube)
 
 Now, Raspberry Pi OS includes up-to-date versions of Qt, rendering the construction of a custom distribution unnecessary. However, this process was a valuable learning experience in embedded Linux, and it led to a fully customized system with a boot-into-application feature and a custom boot screen.
 
