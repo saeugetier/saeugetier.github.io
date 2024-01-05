@@ -5,7 +5,7 @@ date: 2024-01-05
 
 A few years ago, I embarked on a Photobooth project. I describe it as 'started' because, while it is operational, it's not yet complete. The ideas and roadmap for the project are available in the [GitHub repository](https://github.com/saeugetier/photobooth). I plan to add features periodically.
 
-The project began in January 2018. I constructed the hardware using components I had on hand: a Raspberry Pi 2, an old Canon DSLR, a 15-inch touchscreen, and I [designed a housing](https://github.com/saeugetier/photobooth_hardware) for the setup. To enable photo printing, I acquired a used Canon Selphy CP910 photo printer.
+The project began in January 2018. I constructed the hardware using components I had on hand: a Raspberry Pi 2, an old Canon DSLR, a 15-inch touchscreen, and I [designed a housing](https://github.com/saeugetier/photobooth_hardware) for the setup. To enable photo printing, I acquired a used Canon Selphy CP910 photo printer. Lighting the scene is achieved using two 20-watt LEDs, powered by LED TV backlight drivers. I discovered that these drivers are quite suitable, as they allow for brightness control via a PWM signal.
 
 ![Hardware](/assets/2024-01-05/Hardware.jpg)
 
