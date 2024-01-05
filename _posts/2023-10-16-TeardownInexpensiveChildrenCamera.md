@@ -28,7 +28,7 @@ I first disassembled the camera with the long version string. The main processor
 
 Datasheet: [https://datasheetspdf.com/mobile/1455703/Spreadtrum/SC6531E/1](https://datasheetspdf.com/mobile/1455703/Spreadtrum/SC6531E/1)
 
-While searching for the Spreadtrum chip I found that there is a port of Doom for that processor. There is a precompiled version for this kind of children camera. The children camera is listed with the name "YX Q5" as compatible device: [https://github.com/ilyakurdyukov/fpdoom](https://github.com/ilyakurdyukov/fpdoom)
+While searching for the Spreadtrum chip I found that there is a port of Doom for that processor. There is a precompiled version for this kind of children camera. The children camera is listed with the name "YX Q5" as compatible device: [https://github.com/ilyakurdyukov/fpdoom](https://github.com/ilyakurdyukov/fpdoom). There is a hint, that pressing the shutter key on bootup will enter the bootloader. I could reproduce it by connecting it via USB while pressing the shutter button.
 
 The datasheet indicates that the processor can handle up to 5MP sensors in JPEG mode using a CCIS camera interface. Quick search in the internet gave me no information about this interface. It can also support 0.3MP sensors without JPEG compression.
 
@@ -38,6 +38,10 @@ Considering the 24-pin camera connector, I initially suspected an OV2640 camera 
 [OV2640 Datasheet](https://www.uctronics.com/download/OV2640_DS.pdf)
 
 This variant of camera stores photos at 640x480 pixels, suggesting a VGA sensor. Despite having settings for up to 40MP, these don't seem to affect image quality.
+
+The display might be a NV3023A display. There is a hint in the first version string. The last firmware version string could be a date code or a reference to the used display. The port of Doom also indicates, that a NV3023 display is used.
+
+[NV3023A Product Page](https://www.panelook.com/TVT0130D-I-Hot-Stock-IPS-1-3-inch-128x128-SPI-interface-square-TFT-LCD-Screen-300nits-NV3023A-detail_155467.html)
 
 Opening the other cameras reveals that the other three cameras feature a different hardware variant.
 
@@ -57,9 +61,9 @@ There isn't much public information about this chip. It's also possible that an 
 
 The camera's menu allows setting image resolutions up to 40MP. At this setting, images are stored at 4032x2880 pixels, around 12MP. However, given the image quality, it's more likely that a sensor similar to the OV7690 is used, with images being software-upscaled. However the live preview shows better flicker reduction and white balance. As visible below the captures have different image characteristics. The AX3295B is listed to be compatible with an OV9732 which interface seems to similar to the OV7690. One interesting experiment for future will be to interchance the camera sensors of all hardware variants.
 
-When connected to a PC, this variant functions as a mass storage device and webcam, with the webcam's maximum resolution at 640x480 pixels, indicating a likely VGA sensor.
+When connected to a PC, this variant functions as a mass storage device and webcam, with the webcam's maximum resolution at 640x480 pixels, indicating a likely VGA sensor. I found no key combination for entering a bootloader mode which would allow to flash different firmware.
 
-Both main hardware variants have very similar firmware interfaces, using the same UI images. However, the button layout differs in the SC6531F variant. The firmware version suggests that newer hardware revisions might use the Spreadtrum chip, and perhaps future updates will fix video recording issues.
+Both main hardware variants have very similar user interfaces implemented in firmware, using the same UI images. However, the button layout differs in the SC6531F variant. The firmware version suggests that newer hardware revisions might use the Spreadtrum chip, and perhaps future updates will fix video recording issues.
 
 Under good lighting, the camera can capture clear images with low resolution. Indoors, however, the images are quite noisy. These cameras are indeed inexpensive toys, suitable for teaching children basic camera handling, hopefully leading them to handle more advanced cameras responsibly in the future.
 
