@@ -28,7 +28,7 @@ The main processor reveals to be a Spreadtrum SC6531F, which is a budget mobile 
 
 Datasheet: [https://datasheetspdf.com/mobile/1455703/Spreadtrum/SC6531E/1](https://datasheetspdf.com/mobile/1455703/Spreadtrum/SC6531E/1)
 
-While searching for the Spreadtrum chip I found that there is a port of Doom for that processor. There is a precompiled version for this kind of children camera. The children camera is listed with the name "YX Q5" as compatible device: https://github.com/ilyakurdyukov/fpdoom
+While searching for the Spreadtrum chip I found that there is a port of Doom for that processor. There is a precompiled version for this kind of children camera. The children camera is listed with the name "YX Q5" as compatible device: [https://github.com/ilyakurdyukov/fpdoom](https://github.com/ilyakurdyukov/fpdoom)
 
 Reading the datasheet says that the processor can access maximum 5M pixel sensors in JPEG mode. The interface is an CCIS camera interface, which I never heard before. 0.3MP sensors can be used without JPEG compression.
 Looking at the signal names and by the fact that the connector is a 24 pin camera connected, my first guess was, that the camera chip might be a OV2640. This camera chip is a 2M pixel camera sensor, which supports capturing in JPEG mode. The OV2640 is a very cheap and commonly used sensor listed for about 2€ on aliexpress. But after looking at the firmware version name, it is more likely that the OV7690 is used, which is a 0.3MP VGA camera sensor with a similar interface.
@@ -65,13 +65,13 @@ At good weather conditions the camera can capture images, where objects can be c
 
 Image shot by SC6531F variant:
 
-![Camera](/assets/2023-10-16/DSC_0000289.jpg)
+![Photo](/assets/2023-10-16/DSC_0000289.jpg)
 
 Images shot by AX3295 variant:
 
-![Camera](/assets/2023-10-16/PHO00386.JPG)
+![Photo](/assets/2023-10-16/PHO00386.JPG)
 There are some overlays which can be used as decoration or frame.
 
-![Camera](/assets/2023-10-16/PHO00461.JPG)
+![Photo](/assets/2023-10-16/PHO00461.JPG)
 
-![Camera](/assets/2023-10-16/PHO00473.JPG)
+![Photo](/assets/2023-10-16/PHO00473.JPG)
