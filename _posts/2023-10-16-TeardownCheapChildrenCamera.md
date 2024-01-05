@@ -3,8 +3,6 @@ title: "Teardown - Cheap Children Camera"
 date: 2023-10-16
 ---
 
-#Teardown of a Cheap Children Camera"
-
 I recently ordered cheap children cameras on aliexpress. You can shops on aliexpress selling them from 4 to 15€. I ordered 4 samples of them from different shops. All have slightly different build quality. All come with different firmware, which can be noticed by different button layout or missing/malfunction features.
 
 ![Camera](/assets/2023-10-16/Camera1.jpg)
