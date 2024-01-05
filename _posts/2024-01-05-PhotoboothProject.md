@@ -3,7 +3,7 @@ title: "Retrospect: Photobooth Project"
 date: 2024-01-05
 ---
 
-Some years ago I stared a Photobooth project. I say started, because it is usable, but still yet not completed. You can see the ideas and roadmap in the [github repository](https://github.com/saeugetier/photobooth). Features will be added from time to time.
+Some years ago I started a Photobooth project. I say started, because it is usable, but still yet not completed. You can see the ideas and roadmap in the [github repository](https://github.com/saeugetier/photobooth). Features will be added from time to time.
 
 I started the project in January 2018 by building the hardware with some stuff I had lying around. So I took a Raspberry Pi 2, an old Canon DSLR, a 15 inch touchscreen and [designed a housing](https://github.com/saeugetier/photobooth_hardware) for it. In order to being able to print out photos, I purchased a used Canon Selphy CP910 photo printer. 
 
