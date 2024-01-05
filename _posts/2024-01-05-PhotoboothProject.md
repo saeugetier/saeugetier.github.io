@@ -40,5 +40,9 @@ Utilizing Qt/QML has provided flexibility and strong performance. I've even succ
 
 ![Android](/assets/2024-01-05/Android.jpg)
 
+Writing the application with Qt/QML was not the only challenge. Significant difficulties involved controlling the Canon DSLR (EOS 450D) and the Canon Selphy photo printer.
 
+The Photobooth provides a live preview of the image. Both capturing photos and the live preview are managed via GPhoto2. Fortunately, someone had already developed a Qt Plugin for integrating GPhoto2. The challange: the Canon camera enters standby mode if the trigger isn't pressed for a certain period. This can be prevented by periodically activating the auto-focus via the shutter button. Alternatively, I later discovered that setting an environment variable named "capture" to "true" at regular intervals achieves the same result. Consequently, I created a [fork](https://github.com/saeugetier/qtmultimedia-gphoto) of the plugin with patched code to handle this.
+
+Using printers in Linux can be challenging at times. While CUPS does an admirable job, printing photos through it often results in less than perfect prints. The Android app for the Canon Selphy printer circumvents this issue by sending JPEG data directly to the printer, yielding flawless prints. This process involved some reverse engineering of the protocol, which was then reimplemented in GoLang. I contributed some [stability patches](https://github.com/saeugetier/go-selphy-cp) to this implementation.
 
