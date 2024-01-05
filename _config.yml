@@ -14,9 +14,8 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: Timmedia Blog
-author:
-  name: Timm Eversmeyer
-  email: info@timmedia.de
+author: Timm Eversmeyer
+email: info@timmedia.de
 
 description: >- # this means to ignore newlines until "baseurl:"
   My private page with writups of personal projects and other technical stuff.
@@ -33,9 +32,6 @@ markdown: kramdown
 theme: minima
 plugins:
   - jekyll-feed
-
-minima: 
-  skin: dark
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
