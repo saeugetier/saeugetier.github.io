@@ -16,11 +16,11 @@ I found this version strings in the menu of the camera:
 
 But as this cameras are so cheap, I'm not expecting so much. It is a toy, which is hopefully not easy to destroy. But how are these cameras so cheap to produce? I disassembled them for looking in order to see what is inside. 
 
-The one with the longest version string is the one with the most broken features. Trying to record a video will crash the camera. This camera has different hardware than the others. For some reasons no microphone was soldered in and there is a different main controller.
+The one with the longest version string is the one with the most broken features. Trying to record a video will crash the camera firmware. This camera has different hardware than the others. For some reasons no microphone was soldered in and there is a different main controller.
 
 ![Camera](/assets/2023-10-16/Camera2.jpg)
 
-There is not very much inside. All samples look a bit different inside, but all have mostly the same components. A Lipo Battery with 300mAh seems to be the standard, which last about 30 to 40 minutes. Maybe this battery can be replaced by a bigger one? There is a very cheap loudspeaker. Every sample using a different loudspeakers. As mentioned before, there was one camera without a microphone. A micro sd card can be inserted for storing photos.
+There is not very much inside. All samples look a bit different inside, but all have mostly the same components. A Lipo Battery with 300mAh is used in two cameras. Two cameras have batteries with no capacity printed onto the battery. The unlabeled batteries seem to be a bit smaller in size. I couldn't see a battery protection circuit at the battery. 300 mAh will last about 30 to 40 minutes in use. Maybe this battery can be replaced by a bigger one as possible hardware mod? There is a very cheap loudspeaker. Every sample using a different loudspeakers. As mentioned before, there was one camera without a microphone. A micro sd card can be inserted for storing photos.
 
 ![Camera](/assets/2023-10-16/Camera3.jpg)
 
@@ -59,7 +59,7 @@ The menu allows to set image resolutions up to 40M pixel, too. With that setting
 
 Pluggin this hardware variant into PC, the camera will show up as mass storage device and webcam. Maximum resolution of the webcam is 640x480 pixels. So it is very likely, that the camera sensor is has only VGA resolution.
 
-The look and feel of the firmware of both hardware versions is very. The version string of firmware lets presume, that the Spreadtrum is used for newer hardware variants. Maybe the video recording function will be fixed in later firmware versions for the Spreadtrum chip. 
+The look and feel of the firmware of both hardware versions is very identical. Same images for the UI are used. The button layout of the SC6531F variant is different. The version string of firmware lets presume, that the Spreadtrum is used for newer hardware variants. Maybe the video recording function will be fixed in later firmware versions for the Spreadtrum chip. 
 
 At good weather conditions the camera can capture images, where objects can be clearly identified. Inside of buildings the images are very noisy. The camera is really only a cheap toy, which can teach children how to handle a camera and hopefully at sometime they are ready to use real cameras without damaging them after first use.
 
