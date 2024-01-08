@@ -1,5 +1,5 @@
 ---
-title: "Retrospect: Photobooth Project"
+title: "Fixing a Buggy Board"
 date: 2024-01-08
 ---
 
