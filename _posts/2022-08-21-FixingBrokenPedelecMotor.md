@@ -38,3 +38,5 @@ Remounting the gear proved challenging due to its tight fit on the bearing, nece
 ![Bike](/assets/2022-08-21/Bike8.jpg)
 
 While the gear was heating, I cleaned the motor and removed old grease. As a crucial pre-assembly step, I applied Liqui Molly 1080 Schmierfix to lubricate the one-way clutch. Following the assembly, the gear teeth were generously coated with grease to ensure optimal performance. Liqui Molly 1080 Schmierfix is renowned for its adhesive properties and compatibility with plastic gears.
+
+![Bike](/assets/2022-08-21/Bike9.jpg)
