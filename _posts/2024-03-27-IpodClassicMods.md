@@ -21,4 +21,4 @@ While searching for a Bluetooth audio transmitter, I came across the KCX Bluetoo
 
 In the end, I decided to use an [ESP32 with audio ADC](https://docs.ai-thinker.com/en/esp32-a1s). An audio transmitter can be realized with the help of an [arduino library](https://github.com/pschatzmann/ESP32-A2DP). Using my own firmware, I have the option of evaluating key combinations from the clickwheel. The Bluetooth transmitter goes into the energy-saving deep sleep mode after a specific time and thus saves the battery. Waking the bluetooth up can be done by pressing the middle and menu button simultaniously and bluetooth pairing sequence is initiated by pressing the play and middle button together. With the help of my own firmware, I was also able to implement the pairing more reliably. The pairing status is indicated by a blue LED as a flashing pattern. It was just a little more difficult to accommodate the esp32 module as it is much larger.
 
-![iPod](/assets/2024-03-27/iPod1.jpg)
+![iPod](/assets/2024-03-27/iPod2.jpg)
