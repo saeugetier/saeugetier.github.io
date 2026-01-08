@@ -76,7 +76,7 @@ Features:
 
 ## Further links
 
-Check out the app on Flathub: https://flathub.org/de/apps/io.github.saeugetier.photobooth
+[Check out the app on Flathub: https://flathub.org/de/apps/io.github.saeugetier.photobooth](https://flathub.org/de/apps/io.github.saeugetier.photobooth)
 
-Source on GitHub: https://github.com/saeugetier/photobooth
+[Source on GitHub: https://github.com/saeugetier/photobooth](https://github.com/saeugetier/photobooth)
 
