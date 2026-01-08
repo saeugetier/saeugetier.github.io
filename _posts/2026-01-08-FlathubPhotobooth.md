@@ -17,6 +17,8 @@ The main reasons for moving to Flathub:
 
 **System maintenance:** Keeping track with the current version of Yocto took considerable effort. Much of the testing work focused on validating the system itself rather than the application. The Yocto image had to be built and tested separately for each Raspberry Pi variant, and achieving real stability would have required significantly more work.
 
+**Stable operating system:** The Raspberry Pi ecosystem has evolved significantly since I started developing Photobooth. Early versions lacked essential features and relied on outdated software. Flatpak enables managing application dependencies independently while running a stable base OS. With Yocto, I struggled to get CUPS and Gutenprint working properly, forcing workarounds like sending image data directly over Wi-Fi to the Canon Selphy printer. Flatpak eliminates these constraints.
+
 **Qt lifecycle:** Yocto still relied on Qt5, which is moving out of support. The transition to Flathub forced a port to Qt6, which was overdue anyway.
 
 ## Qt6 Migration Challenges
