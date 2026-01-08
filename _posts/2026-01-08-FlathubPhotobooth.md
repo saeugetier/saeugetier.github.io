@@ -3,35 +3,74 @@ title: "Photobooth: Distribution moved to Flathub"
 date: 2026-01-08
 ---
 
-For a long time I packaged the Photobooth as a custom Yocto image. Yocto gave me the control I needed: a minimal system, a carefully built Qt, and a boot-into-application setup that works well on dedicated hardware. But maintaining an entire Linux distribution for a single application turned out to be a heavy burden.
+For a long time I packaged the Photobooth as a custom Yocto image. Yocto provided the control I needed for dedicated hardware, but maintaining an entire Linux distribution for a single application became a heavy burden—especially when adding features like YOLO v11 background removal with its complex Python dependencies.
 
-Yocto forces you to think about the whole operating system. Kernel versions, device tree fragments, distro recipes, and cross-compiled libraries all require ongoing maintenance. When I started adding new features—most notably a YOLO v11 based image segmentation pipeline for background removal—build-time Python dependencies became a real pain. Some Python packages needed to build parts of the toolchain and were awkward to integrate into Yocto recipes. Rebuilding or updating a single Python dependency often meant long build times and fiddly recipe work.
+## Why the Switch?
 
-Moving the distribution to Flathub (Flatpak) changed the workflow in one decisive way: I no longer have to manage the whole OS. With Flatpak/Flathub I package the application and its direct dependencies. Many libraries and runtimes are already available as prebuilt Flatpak runtimes or exported by the Flathub ecosystem. That means:
+The main reasons for moving to Flathub:
 
-- I only worry about the app and its dependencies, not kernel or system packaging.
-- Precompiled binaries for common libs shorten CI and keep iteration fast.
-- Python dependencies can be handled in a user-space environment (bundled or provided by runtime), avoiding complex Yocto recipe work.
-- Distribution becomes cross-distro: one Flatpak on Flathub runs on many desktop distributions.
+**Scope reduction:** With Yocto I had to manage the whole operating system—kernel versions, device trees, distro recipes, cross-compiled libraries. With Flatpak I only package the app and its direct dependencies. Many libraries are already available as prebuilt runtimes.
 
-An additional practical advantage was build speed and CI integration. The Yocto build for the full image took about four hours on my laptop. Building the application as a Flatpak is noticeably faster, and Flatpak integrates well with GitHub Actions. I can build a test Flatpak in pull requests and publish an installable artifact for quick testing on other machines. This lets me iterate features and verify platform-specific issues without rebuilding a complete OS image.
+**Build efficiency:** Yocto builds took about four hours on my laptop. Flatpak builds are noticeably faster, and GitHub Actions CI lets me build test Flatpaks in pull requests for quick testing on different machines.
 
-For the Photobooth project this made adopting the YOLO-based background removal much simpler. The heavy lifting for segmentation (C/C++ libraries, OpenCV, inference runtimes) can rely on prebuilt components or be shipped as part of the Flatpak bundle. Python modules required to build or run the new feature are treated like normal application dependencies instead of cross-compiling them into a whole system image.
+**Dependency management:** Managing dependencies in Yocto was cumbersome—I had to write recipes for build-time tools like Python. With Flatpak, build dependencies like Python are easy to include in the build environment, and they don't bloat the final runtime image. This is especially useful for complex builds like libcamera that require Python during compilation.
 
-Operationally the migration brought other niceties: faster release cycles, simpler CI, and fewer surprises when users run the app on different distributions. Sandboxing in Flatpak also helps keep the application environment predictable without having to freeze a full OS image.
+**Qt lifecycle:** Yocto still relied on Qt5, which is moving out of support. The transition to Flathub forced a port to Qt6, which was overdue anyway.
 
-Another practical reason for the switch was Qt's lifecycle. The Photobooth used Qt5 for many years; Yocto recipes and my custom images still relied on Qt5. With Qt5 moving out of mainstream support, staying on Yocto would have meant continuing to carry an increasingly outdated Qt stack. One big task during the transition to Flathub therefore was porting the entire application to Qt6.
+## Qt6 Migration Challenges
 
-Porting to Qt6 briefly broke the existing camera support based on gphoto2. Previously the camera integration used a Qt Multimedia plugin wrapping gphoto2, but the plugin approach used before isn't supported the same way in Qt6. To regain camera functionality I removed the plugin dependency and implemented the camera input directly in the application. Using `QVideoFrameInput` I feed frames from gphoto2 into Qt's pipeline as a custom video source. Re-implementing the features that the plugin provided took some effort, but the port forced a cleanup of the multimedia code and resulted in a simpler, more maintainable implementation.
+Porting to Qt6 broke existing gphoto2 camera support—Qt6 doesn't support the Qt Multimedia plugin system the same way. I reimplemented camera input directly using `QVideoFrameInput` to feed gphoto2 frames into Qt's pipeline. This and other refactoring during the port resulted in simpler, more maintainable code.
 
-One challenge I ran into was getting the Flatpak metadata right. Documentation for manifest fields and best practices is fragmented, and there was no simple, local way to fully validate that metadata. A full metadata check is implemented in the Flathub distribution repository, so the most complete validation only happens in that packaging repo's CI. That made iterating on the manifest awkward at first, until I started using PR-built Flatpak artifacts and the distribution CI to catch the remaining issues.
+## YOLOv11 Integration
 
-I still appreciate what Yocto gave me: a small, reliable appliance image with tight control over boot and hardware. For my development and wider distribution goals, however, Flathub is a much better fit—significantly less maintenance while giving users an easy install experience.
+The background removal feature leverages YOLOv11 image segmentation for precise subject isolation. To maximize performance and memory usage, I implemented the inference engine directly in C++ using NCNN and ONNX runtimes, allowing the user to select the faster backend depending on the target architecture. The live preview uses the lightweight nano model to maintain real-time performance, while final processed images use the refined extra large model for superior quality. The preview runs at real-time speeds even on a Raspberry Pi 5, making the feature practical for kiosk deployments.
 
-If you want to try the app, it's now available on Flathub: https://flathub.org/de/apps/io.github.saeugetier.photobooth
+## Packaging Hurdles
 
-You can also check out the source on GitHub: https://github.com/saeugetier/photobooth
+**Network isolation:** Flathub's build workers are completely isolated from the internet for security and reproducibility. While my own CI runners could access the network during builds, Flathub required all dependencies to be pre-downloaded. Python packages had to be cached and installed offline, and some libraries that fetched dependencies during compilation needed manual resolution.
 
+**Model preparation:** The YOLOv11 models require export to NCNN and ONNX formats, a process that typically downloads dependencies from the internet. Since this couldn't be done during the Flatpak build, I set up a separate pipeline to pre-export the models, then bundled those prepared artifacts into the final package.
 
+**Metadata:** Getting Flatpak metadata right was challenging. Documentation is fragmented, and full validation only happens in Flathub's distribution repository CI. I had to iterate using PR-built artifacts to catch validation issues.
 
+## Conclusion
+
+Yocto remains valuable for appliance-style deployments requiring tight hardware control, enabling purpose-built devices with fine-grained system configuration. For general application distribution, however, Flathub offers clear advantages: reduced maintenance overhead, faster development cycles, and seamless cross-distribution compatibility.
+
+## Installation
+
+Getting started with Photobooth on Flathub is straightforward. First, install the flatpak helper on your system:
+
+```bash
+sudo apt install flatpak
+```
+
+Then install the application directly from Flathub:
+
+```bash
+flatpak install flathub io.github.saeugetier.photobooth
+```
+
+That's it—no complex setup or dependency management needed.
+
+## Current state
+
+Here's a video showcasing the current features of Photobooth:
+
+[![Photobooth on Flathub](https://img.youtube.com/vi/yZxKuiFJEoE/maxresdefault.jpg)](https://www.youtube.com/watch?v=yZxKuiFJEoE)
+
+Features:
+- Intuitive, touch-friendly user interface designed for kiosk use.
+- Capture photos via a camera. USB camera (V4L2) and GPhoto2 cameras are supported. Libcamera (for Raspberry Pi Camera) support will come.
+- Create collage from captured photos. Collage templates are customizable (see documentation)
+- Print single photos or collages
+- View and reprint captures in a gallery
+- Background removal via neural network or green screen.
+- Selectable image filter effects
+
+## Further links
+
+Check out the app on Flathub: https://flathub.org/de/apps/io.github.saeugetier.photobooth
+
+Source on GitHub: https://github.com/saeugetier/photobooth
 
