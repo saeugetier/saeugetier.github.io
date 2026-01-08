@@ -61,7 +61,9 @@ That's it—no complex setup or dependency management needed.
 
 Here's a video showcasing the current features of Photobooth:
 
-[![Photobooth on Flathub](https://img.youtube.com/vi/yZxKuiFJEoE/maxresdefault.jpg)](https://www.youtube.com/watch?v=yZxKuiFJEoE)
+[![Photobooth on Flathub - Watch on YouTube](https://img.youtube.com/vi/yZxKuiFJEoE/maxresdefault.jpg)](https://www.youtube.com/watch?v=yZxKuiFJEoE)
+
+**[Watch on YouTube](https://www.youtube.com/watch?v=yZxKuiFJEoE)**
 
 Features:
 - Intuitive, touch-friendly user interface designed for kiosk use.
