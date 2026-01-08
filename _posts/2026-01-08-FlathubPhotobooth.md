@@ -15,6 +15,8 @@ The main reasons for moving to Flathub:
 
 **Dependency management:** Managing dependencies in Yocto was cumbersome—I had to write recipes for build-time tools like Python. With Flatpak, build dependencies like Python are easy to include in the build environment, and they don't bloat the final runtime image. This is especially useful for complex builds like libcamera that require Python during compilation.
 
+**System maintenance:** Keeping track with the current version of Yocto took considerable effort. Much of the testing work focused on validating the system itself rather than the application. The Yocto image had to be built and tested separately for each Raspberry Pi variant, and achieving real stability would have required significantly more work.
+
 **Qt lifecycle:** Yocto still relied on Qt5, which is moving out of support. The transition to Flathub forced a port to Qt6, which was overdue anyway.
 
 ## Qt6 Migration Challenges
